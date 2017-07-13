@@ -1,0 +1,29 @@
+---
+- hosts: all
+  user: vagrant
+  sudo: True
+  tasks:
+    - name: Stop iptables
+      command: Service iptables stop
+
+    - name: Stop iptables6
+      command: service ip6tables stop
+
+    - name: If needed temporarily disable SELinux
+      shell: echo 0 > enforce
+      args:
+        chdir: /selinux
+        removes: enforce
+
+    - name: Disable SElinux permanently
+      lineinfile: dest=/etc/selinux/config state=present create=no regexp='SELINUX=.*' line='SELINUX=disabled'
+
+    - name: Install NTP
+      yum:
+        pkg: ntp
+        state: installed
+
+    - name: Start NTP
+      command: service ntpd start#
+
+    - name: Add all hostsnames for every node in the cluster to the hosts file.

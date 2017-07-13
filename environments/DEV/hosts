@@ -1,0 +1,13 @@
+[masters]
+master1.ansible ansible_ssh_user=vagrant
+master2.ansible ansible_ssh_user=vagrant
+
+[workers]
+worker1.ansible ansible_ssh_user=vagrant
+worker2.ansible ansible_ssh_user=vagrant
+worker3.ansible ansible_ssh_user=vagrant
+
+[kafka]
+kafka1.ansible ansible_ssh_user=vagrant
+kafka2.ansible ansible_ssh_user=vagrant
+kafka3.ansible ansible_ssh_user=vagrant
